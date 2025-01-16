@@ -1,0 +1,54 @@
+<h2 mat-dialog-title></h2>
+<h2 class="text-center">{{cita}} Cita</h2>
+<form  [formGroup]="citaForm" (ngSubmit)=" onSubmit()">
+  <mat-dialog-content class="mat-typography">
+    <div class="container w-100">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Número de Cita</span>
+        </div>
+        <input   type="text" class="form-control disabled" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+           formControlName="idCitas" [value]="this.data.cita">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Pasiente </label>
+        </div>
+          <span class="form-control"> {{this.data.pasientes.nombre +' ' + this.data.pasientes.apellidoParterno + ' '+ this.data.pasientes.apellidoMaterno}}</span>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" >Médico</label>
+        </div>
+        <select  class="custom-select custom-select-lg mb-3 form-control" formControlName="medico" [value]=this.data.medicoId>
+          <option value="0" >Seleccione</option>
+          <option *ngFor="let item of selectMedico" value={{item.id}}>  {{ item.nombre +' '+item.apellidoParterno +' '+item.apellidoMaterno }}</option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" >Tipo de cita</label>
+        </div>
+        <select class="custom-select custom-select-lg mb-3 form-control" formControlName="tipoCita" [value]=this.data.tipoCitaId>
+          <option  value="0">Seleccione</option>
+          <option *ngFor="let item of selectTipoCita" value={{item.id}}>  {{ item.tipoCita	  }}</option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Fecha cita</span>
+        </div>
+        <input class="form-control" type="datetime-local" formControlName="fechaCita"  value="2018-06-12T19:30" />
+      </div>
+
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button class="m-3 btn btn-outline-danger" mat-button mat-dialog-close>Cancel</button>
+    <button class="btn btn-outline-success"  type="submit">Guardar</button>
+  </mat-dialog-actions>
+</form>
